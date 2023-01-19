@@ -3,7 +3,10 @@ const app = express();
 const path = require("path");
 const cors = require("cors");
 app.use(cors());
-app.use("/", express.static(path.join(__dirname, "build")));
+app.use(express.static(path.join(__dirname, "build")));
+app.get("/*", (req, res) => {
+  res.sendFile(__dirname, "build", "index.html");
+});
 app.listen(3000, () => {
   console.log("running on port 3000", "||", "index.js", "line-", 8);
 });
